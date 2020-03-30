@@ -39,7 +39,7 @@ public class Main {
 		System.out.println("S-au citit stop wordurile de la calea : "+cale + "/stopwords.txt");
 		 //array-urile sunt goale
 		int indexFisier = 0;
-		String finalOutput = cale + "/Rezultat/FinalOutput.txt";//rezultate finale
+		String finalOutput = cale + "/Rezultat/FinalOutput.txt";//rezultate finale (INDEX-UL INDIRECT)
 		for (File file : filesFromDirectory) {
 			String pathFiles = cale + "/Rezultat/";
 			String name1 = "In" + indexFisier;//generare nume fisier de intrare
@@ -48,7 +48,7 @@ public class Main {
 			File iesire = new File(pathFiles + name2 + ".txt");//generare fisier output
 
 			PrintWriter writer1 = new PrintWriter(pathFiles + name1 + ".txt");//obiect pentru scriere in fisier input
-			PrintWriter writer2 = new PrintWriter(pathFiles + name2 + ".txt");//obiect pentru scriere in fisier output 
+			PrintWriter writer2 = new PrintWriter(pathFiles + name2 + ".txt");//obiect pentru scriere in fisier output (INDEXUL DIRECT)
 			
 			MainObj.putDataInText(file, writer1);//citirea datelor din fisierele html si scrierea intr-un txt de intrare
 			MainObj.readDataFromFile(intrare, writer2, file,cale, stopWords);//citire cuvinte din fisier + generare index <document, cuvant>
@@ -57,10 +57,11 @@ public class Main {
 			MainObj.WordsCounting(iesire, output);//Numarare aparitie cuvinte
 			indexFisier++;
 		}
-		File fileIDE = new File(finalOutput);
-		getIDF(fileIDE, 25);
+		MainObj.afisareIndex(finalOutput);
+		//File fileIDE = new File(finalOutput);
+		//getIDF(fileIDE, 25);
 		// afisez cuvintele cu idf calculat
-		showIDF();
+		//showIDF();
 		//scan.close();
 	}
 	//afisarea idf pe consola
